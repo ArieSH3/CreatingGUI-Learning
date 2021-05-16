@@ -16,3 +16,7 @@ import tkinter
 import pysimplegui as sg
 
 sg.theme('DarkAmber') 
+
+layout = [	[sg.Text('Some text on Row 1')],
+			[sg.Text('Enter somethng on Row 2')],
+			[sg.Button('Ok'), sg.Button('Cancel')]	]
