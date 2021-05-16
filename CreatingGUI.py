@@ -18,6 +18,7 @@ import PySimpleGUI as sg
 def main():
 
 	popup()
+	popup_timed()
 	someWindow()
 
 
@@ -44,6 +45,11 @@ def someWindow():
 def popup():
 	sg.theme('SystemDefault')
 	sg.popup('ERROR: 0x4FA1F', 'Your PC is shutting down in 1 minute...')
+
+# Automatically closes after few seconds
+def popup_timed():
+	sg.theme('DarkAmber')
+	sg.popup_timed('Closing soon') 
 
 
 
