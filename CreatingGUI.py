@@ -14,3 +14,5 @@
 import pyautogui
 import tkinter
 import pysimplegui as sg
+
+sg.theme('DarkAmber') 
