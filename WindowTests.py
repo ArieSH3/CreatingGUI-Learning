@@ -33,9 +33,9 @@ def text_input_ok_window():
 	# Checks if input is number or not
 	try:
 		if float(values[0]):
-			sg.Popup(event, values[0])
+			sg.Popup('Entered: ', values[0])
 	except:
-		sg.Popup(event + ' is not a number.')
+		sg.Popup(values[0] + ' is not a number.')
 
 
 
