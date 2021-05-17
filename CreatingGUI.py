@@ -55,6 +55,7 @@
 	sg.popup_get_file('popup_get_file')  # Asks user to provide file/ opens browse
 	sg.popup_get_folder('sg.popup_get_folder')  # Gets folder
 	sg.popup_animated('popup_animated')  # Can show an animated gif or loading for example
+	sg.one_line_progress_meter('one_line_progress_meter') # Shows loading progress
 
 '''
 
@@ -76,8 +77,8 @@ def main():
 	# popup_get_text()
 	# popup_get_file()
 	# popup_get_folder()
-	popup_animated()
-
+	# popup_animated()
+	one_line_progress_meter()
 
 
 
@@ -147,6 +148,11 @@ def popup_animated():
 
 	sg.popup_animated(base64string)
 	print(len(base64string))
+
+# Loading line/ showing progress/ iteration
+def one_line_progress_meter():
+	for i in range(1,10000):
+		sg.one_line_progress_meter('Loading', i+1, 10000, 'key', 'Optional message', orientation = 'h')
 
 
 
