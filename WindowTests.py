@@ -11,12 +11,12 @@ import PySimpleGUI as sg
 
 def main():
 
-	text_input_ok_window()
+	# text_input_ok_window()
+	filename_browse()
 
 
 
-
-
+# Simple window with three elements (text, input, ok)
 def text_input_ok_window():
 	layout = [	[sg.Text('Enter number')],
 				[sg.Input()],
@@ -36,6 +36,19 @@ def text_input_ok_window():
 			sg.Popup('Entered: ', values[0])
 	except:
 		sg.Popup(values[0] + ' is not a number.')
+
+
+def filename_browse():
+	sg.theme('DarkAmber')
+	layout = [	[sg.Text('Filename')],
+				[sg.Input(), sg.FileBrowse()],
+				[sg.OK(), sg.Cancel()]	]
+
+	window = sg.Window('Get filename', layout)
+	event, values = window.read()
+	window.close()
+
+	sg.popup('Location', values[0])
 
 
 
