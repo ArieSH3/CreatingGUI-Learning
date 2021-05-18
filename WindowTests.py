@@ -12,7 +12,8 @@ import PySimpleGUI as sg
 def main():
 
 	# text_input_ok_window()
-	filename_browse()
+	# filename_browse()
+	one_shot_window()
 
 
 
@@ -37,7 +38,7 @@ def text_input_ok_window():
 	except:
 		sg.Popup(values[0] + ' is not a number.')
 
-
+# Browsing a filename and returning string of location
 def filename_browse():
 	sg.theme('DarkAmber')
 	layout = [	[sg.Text('Filename')],
@@ -49,6 +50,19 @@ def filename_browse():
 	window.close()
 
 	sg.popup('Location', values[0])
+
+# Window is not read multiple times
+def one_shot_window():
+	layout = [	[sg.Text('SHA-1 and SHA-256 Hashes for the file')],
+				[sg.InputText(), sg.FileBrowse()],
+				[sg.Submit(), sg.Cancel()]	]
+
+	window = sg.Window('SHA-1 & SHA-256 Hash', layout)
+
+	event, values = window.read()
+	window.close()
+
+	source_filename = values[0]
 
 
 
