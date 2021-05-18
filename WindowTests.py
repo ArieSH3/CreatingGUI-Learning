@@ -13,7 +13,9 @@ def main():
 
 	# text_input_ok_window()
 	# filename_browse()
-	one_shot_window()
+	# one_shot_window()
+	# one_show_window_compact()
+	persistent_window()
 
 
 
@@ -64,6 +66,29 @@ def one_shot_window():
 
 	source_filename = values[0]
 
+# Window is not read multiple times compact version
+def one_show_window_compact():
+	event, values = sg.Window('SHA-1 & SHA-256 Hash', [	[sg.Text('SHA-1 and SHA-256 Hashes for the file')],
+														[sg.InputText(), sg.FileBrowse()],
+														[sg.Submit(), sg.Cancel()]	]).read(close=True)
+
+	source_filename = values[0]
+
+# Multiple reads using an event loop
+def persistent_window():
+	layout = [	[sg.Text('Persistent window')],
+				[sg.Input()],
+				[sg.Button('Read'), sg.Exit()]	]
+
+	window = sg.Window('Window that stays open', layout)
+
+	while True:
+		event, values = window.read()
+		if event == sg.WIN_CLOSED or event == 'Exit':
+			break
+		print(event + ' -', values[0])
+
+	window.close()
 
 
 
