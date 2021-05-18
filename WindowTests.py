@@ -15,7 +15,10 @@ def main():
 	# filename_browse()
 	# one_shot_window()
 	# one_show_window_compact()
-	persistent_window()
+	# persistent_window()
+	# persistent_window_updates()
+	# rename_files()
+	close_attempt()
 
 
 
@@ -90,8 +93,59 @@ def persistent_window():
 
 	window.close()
 
+# Multople reads using event loop + updates data in window
+def persistent_window_updates():
+	layout = [	[sg.Text('Your typed chars appear here:'), sg.Text(size=(12,1), key='-OUTPUT-')],
+				[sg.Input(key='-IN-')],
+				[sg.Button('Show'), sg.Button('Exit')]	]
+	
+	window = sg.Window('Window Title', layout)
 
+	while True:
+		event, values = window.read()
+		print(event, values)
+		if event == sg.WIN_CLOSED or event == 'Exit':
+			break
+		if event == 'Show':
+			window['-OUTPUT-'].update(values['-IN-'])
 
+	window.close()			
+
+# Find and give back location of files/folders to be worked on(renamed)
+def rename_files():
+		layout = [	[sg.Text('Rename files or folders')],
+					[sg.Text('Source for Folders', size=(15,1)), sg.InputText(), sg.FolderBrowse()],
+					[sg.Text('Source for Files', size=(15,1)), sg.InputText(), sg.FileBrowse()],
+					[sg.Submit(), sg.Cancel()]  ]
+		
+		window = sg.Window('Rename files or folders', layout)
+		
+		event, values = window.read()
+		window.close()
+
+		folder_path, file_path = values[0], values[1]
+		print(folder_path, file_path)
+
+# Window popup to confirm window wants to be closed
+# enable_close_attempted_event = True
+def close_attempt():
+	layout = [	[sg.Text('Very basic Window')],
+          	 	[sg.Text('Click X in titlebar or the Exit button')],
+          		[sg.Button('Go'), sg.Button('Exit')]	]
+
+	window = sg.Window('Close attempt test', layout, enable_close_attempted_event=True)
+
+	while True:
+	    event, values = window.read()
+	    print(event, values)
+	    if (event == sg.WINDOW_CLOSE_ATTEMPTED_EVENT or event == 'Exit') and \
+	    	sg.popup_yes_no('Do you really want to exit') == 'Yes':
+	    	
+	    	break
+
+	    		
+
+	window.close()
 
 
 

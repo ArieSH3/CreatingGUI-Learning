@@ -78,7 +78,8 @@ def main():
 	# popup_get_file()
 	# popup_get_folder()
 	# popup_animated()
-	one_line_progress_meter()
+	# one_line_progress_meter()
+	popup_yes_no()
 
 
 
@@ -154,7 +155,12 @@ def one_line_progress_meter():
 	for i in range(1,10000):
 		sg.one_line_progress_meter('Loading', i+1, 10000, 'key', 'Optional message', orientation = 'h')
 
-
+# Popup with option yes and no
+def popup_yes_no():
+	if sg.popup_yes_no('Do you really') == 'Yes':
+		print('yes')
+	else:
+		print('no')
 
 
 
